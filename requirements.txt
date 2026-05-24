@@ -1,0 +1,11 @@
+numpy
+opencv-python
+pillow
+matplotlib
+pandas
+customtkinter
+
+opencv-python
+customtkinter
+matplotlib
+pillow
