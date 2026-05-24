@@ -4,11 +4,10 @@ import string
 from tkinter import filedialog
 from PIL import Image, ImageTk
 
-# Força o Matplotlib a embutir o gráfico corretamente sem travar a janela
 import matplotlib
 matplotlib.use("TkAgg")
 
-# Garante acesso à pasta src
+# acesso à pasta src
 sys.path.append(os.path.abspath("src"))
 
 import customtkinter as ctk
@@ -35,7 +34,7 @@ class AppAdalineModerno(ctk.CTk):
         self.configurar_layout()
         
     def configurar_layout(self):
-        # --- PAINEL ESQUERDO: CONTROLES E SELEÇÃO ---
+        # PAINEL ESQUERDO: CONTROLES E SELEÇÃO
         self.frame_esquerdo = ctk.CTkFrame(self, width=280)
         self.frame_esquerdo.pack(side="left", fill="both", padx=15, pady=15)
         self.frame_esquerdo.pack_propagate(False)
@@ -43,14 +42,14 @@ class AppAdalineModerno(ctk.CTk):
         lbl_cfg = ctk.CTkLabel(self.frame_esquerdo, text="Hiperparâmetros", font=ctk.CTkFont(size=16, weight="bold"))
         lbl_cfg.pack(pady=10)
         
-        # Entrada de Épocas
+        # Épocas
         lbl_epocas = ctk.CTkLabel(self.frame_esquerdo, text="Número de Épocas:")
         lbl_epocas.pack(anchor="w", padx=20)
         self.txt_epocas = ctk.CTkEntry(self.frame_esquerdo)
         self.txt_epocas.insert(0, "40")
         self.txt_epocas.pack(fill="x", padx=20, pady=5)
         
-        # Entrada de Taxa de Aprendizado
+        #Taxa de Aprendizado
         lbl_alpha = ctk.CTkLabel(self.frame_esquerdo, text="Taxa de Aprendizado (α):")
         lbl_alpha.pack(anchor="w", padx=20)
         self.txt_alpha = ctk.CTkEntry(self.frame_esquerdo)
@@ -70,7 +69,7 @@ class AppAdalineModerno(ctk.CTk):
         self.lbl_preview_img = ctk.CTkLabel(self.frame_esquerdo, text="[ Sem Imagem ]", width=120, height=120, fg_color="#222222", corner_radius=8)
         self.lbl_preview_img.pack(pady=10)
         
-        # --- PAINEL DIREITO: MONITOR GRÁFICO MSE E RESULTADO ---
+        # PAINEL DIREITO: MONITOR GRÁFICO MSE E RESULTADO
         self.frame_direito = ctk.CTkFrame(self)
         self.frame_direito.pack(side="right", fill="both", expand=True, padx=15, pady=15)
         

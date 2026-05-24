@@ -26,7 +26,7 @@ def treinar_sistema_adaline(epocas=40, taxa_aprendizado=0.005):
         erro_acumulado = 0.0
         for x_amostra, letra_real in zip(X_dados, Y_letras_reais):
             for letra_neuronio, neuronio in redes_adaline.items():
-                # Força a taxa de aprendizado dinamicamente atualizada pela interface
+                # taxa de aprendizado atualizada pela interface
                 neuronio.alpha = taxa_aprendizado
                 alvo = 1.0 if letra_neuronio == letra_real else -1.0
                 erro_acumulado += neuronio.treinar_amostra(x_amostra, alvo)

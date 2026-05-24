@@ -3,7 +3,7 @@ import string
 from PIL import Image, ImageDraw, ImageFont
 
 def gerar_dataset_letras():
-    # Caminhos das pastas de destino (Agora usando treino e teste separadamente)
+    # pastas de destino 
     pasta_treino = os.path.join("dados", "treino")
     pasta_teste = os.path.join("dados", "teste")
     
@@ -12,7 +12,7 @@ def gerar_dataset_letras():
     
     letras = string.ascii_uppercase
     
-    # Lista de fontes sugeridas pelo roteiro
+    # fontes
     fontes_nomes = ["arial.ttf", "times.ttf", "calibri.ttf", "verdana.ttf", "cour.ttf"]
     tamanho_img = (64, 64)
     
@@ -25,7 +25,7 @@ def gerar_dataset_letras():
             except IOError:
                 fonte = ImageFont.load_default()
                 
-            # Criar imagem branca e desenhar letra em preto
+            # criar imagem branca e desenhar letra em preto
             imagem = Image.new("L", tamanho_img, color=255)
             draw = ImageDraw.Draw(imagem)
             
@@ -36,20 +36,20 @@ def gerar_dataset_letras():
             y = (tamanho_img[1] - altura_texto) // 2
             draw.text((x, y), letra, fill=0, font=fonte)
             
-            # --- ESTRATÉGIA DE SEPARAÇÃO ---
-            # Fontes index 0 e 1 (Arial e Times New Roman) vão para o TREINO
+            # SEPARAÇÃO
+            # Fontes Arial e Times New Roman para o TREINO
             if i < 2:
                 destino = pasta_treino
                 sufixo = f"fonte_{i}_CONHECIDA"
-            # Fontes index 2, 3 e 4 (Calibri, Verdana e Courier) vão para o TESTE
+            # Fontes Calibri, Verdana e Courier vão para o teste
             else:
                 destino = pasta_teste
                 sufixo = f"fonte_{i}_DESCONHECIDA"
             
-            # Salva a imagem base
+            
             imagem.save(os.path.join(destino, f"{letra}_{sufixo}_normal.png"))
             
-            # Se for para o treino, salvamos também as rotações para ajudar a rede
+            
             if i < 2:
                 img_rot1 = imagem.rotate(10, fillcolor=255)
                 img_rot1.save(os.path.join(destino, f"{letra}_{sufixo}_rot10.png"))
